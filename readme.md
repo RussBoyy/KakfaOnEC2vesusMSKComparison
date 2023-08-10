@@ -17,16 +17,17 @@ Those areas are:
 
 The difference between Kafka implemented on-premise v EC2 v MSK can be broken down as follows. The items highlighted in orange are functional deliverables that are provided through the AWS service, and the grey items are deliverables will be the responsibility of your delivery team.
 
-![Kafka - image1.png](./Images/Kafka - image1.png)
+
+![Kafkaimage1](.images/Kafkaimage1.png)
+
+
 
 
 As per the above, there is a significance difference between managed and self-managed.  The additional time and effort is for maintaining a self-managed platform is difficult to calculate but the following image provides a comparison break-down of the number of individuals and the types of skills required to build the different types of Kafka solutions.  
 
-
-
 Note: The follow technical guidelines are based on a typical deployment of 500GB with 10MB/s throughput split between 3 AZ’s.  Estimates based on our experience of enterprise customers of similar scale.  Operational resource depends on scale & complexity of the solution. 
 
-![Kafka - image2.png](./Images/Kafka - image2.png)
+![Kafkaimage2](.images/Kafkaimage2.png)
 
 <h2> Running Apache Kafka on AWS EC2 (self-managed) </h2>
 
@@ -36,9 +37,9 @@ Once the solution is deployed the types of tasks that an organisation’s suppor
 
 Open-source Kafka is free to download and run however the cost of managing the Kafka cluster is much higher than MSK due to the complexity of Kafka.
 
-Below illustrates what a self-managed Kafka architecture would typically reflect.  Information is being generated from a relational database and submitted to a Kafka producer which commits the events to the kafka cluster;
+Below illustrates what a self-managed Kafka architecture would typically reflect.  Information is being generated from a relational database and submitted to a Kafka producer which commits the events to the kafka cluster.  There is a three broker cluster in each AZ which communicates with the other AZ's for data replication;
 
-![Kafka - image3.png](.Images/Kafka - image3.png) 
+![Kafkaimage3](.images/Kafkaimage3.png)
 
 
 <h2> Running Apache Kafka on AWS Managed Streaming for Kafka (Managed Service) </h2>
@@ -52,9 +53,9 @@ A point to consider is that MSK is managed by the AWS MSK services team therefor
 
 Compared to self-managed solution, managed MSK solutions are up to 60% lower in cost.  This is due the efficient use of infrastructure through the managed service.  Furthermore, your organisation will benefit significantly from the reduction effort required to deploy and maintain the platform once in production.  
 
-This illustration of a MSK managed platform, when compared to the previous solution, demonstrates a much simpler solution with a lot less dependencies to manage.  
+This illustration of a MSK managed platform, when compared to the previous solution, demonstrates a much simpler solution with a lot less dependencies to manage.  MSK by default deploys into three AZ's and gurantees 99.99% availability.  
 
-![Kafka - image4.png](./Images/Kafka - image4.png)
+![Kafkaimage4](.images/Kafkaimage4.png)
 
 The conclusion of this is that MSK is a much easier, safer and cost-effective way to deliver Kafka into your organisation.  For more information on AWS MSK see [here](https://aws.amazon.com/msk/).
 
