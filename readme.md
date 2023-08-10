@@ -4,18 +4,18 @@ In this upload we will provide a short overview of the implementation, operation
 
 **What is Apache Kafka?**  Apache Kafka is a distributed event store and stream-processing platform. It is an open-source system developed by the Apache Software Foundation written in Java and Scala. Kafka allows applications to publish and subscribe to streams of records, store events in consistent order within partitions and allows applications to process records as they occur.
 
-**What is AWS MSK?**  Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run realtime data pipelines.  MSK keeps costs low and is offered at as low as 1/13th the cost of other providers.
+**What is AWS MSK?**  Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables your organisation to build and run realtime Kafka data pipelines without the need to manage  infrastucture, OS or software patching.  MSK keeps costs low and is offered at as low as 1/13th the cost of other providers.
 
 With the increase in Kafka adoption, organisations are asking themselves whether they should create and manage their own Kafka cluster using open-source Kafka or should they leverage AWS managed service MSK.  This upload will not be an exhaustive list of advantages versus disadvantages but will focus on highlighting areas that should be considered when deciding which approach should be adopted.  
 
 Those areas are:
 
 *	Team size
-*	Technical implementation / architecture 
+*	Implementation / architecture 
 *	Cost
 
 
-The difference between Kafka implemented on-premise v EC2 v MSK can be broken down as follows. The items highlighted in orange are functional deliverables that are provided through the AWS service, and the grey items are deliverables will be the responsibility of your delivery team.
+The difference between Kafka implemented on-premise v EC2 v MSK can be broken down as follows. The items highlighted in orange are functional deliverables that are provided through the AWS managed service model, and the grey items are deliverables that will be the responsibility of your delivery team.
 
 
 ![Kafkaimage1](./images/Kafkaimage1.png)
@@ -23,21 +23,21 @@ The difference between Kafka implemented on-premise v EC2 v MSK can be broken do
 
 
 
-As per the above, there is a significance difference between managed and self-managed.  The additional time and effort is for maintaining a self-managed platform is difficult to calculate but the following image provides a comparison break-down of the number of individuals and the types of skills required to build the different types of Kafka solutions.  
+As per the above, there is a significance difference between managed and self-managed solutions.  The additional time and effort for maintaining a self-managed platform is difficult to calculate but the following image provides a comparison break-down of the number of individuals and the types of skills required to build the different types of Kafka solutions.  
 
-Note: The follow technical guidelines are based on a typical deployment of 500GB with 10MB/s throughput split between 3 AZ’s.  Estimates based on our experience of enterprise customers of similar scale.  Operational resource depends on scale & complexity of the solution. 
+Note: The follow technical guidelines are based on a typical deployment of 500GB with 10MB/s throughput split between 3 AZ’s.  Estimates based on our experience of enterprise customers of similar scale.  Operational resource depends on scale and complexity of the solution. 
 
 ![Kafkaimage2](./images/Kafkaimage2.png)
 
 <h2> Running Apache Kafka on AWS EC2 (self-managed) </h2>
 
-To build a self-managed Kafka platform, your organisation will need to provision the relevant EC2 instances, configure the network connectivity between the brokers within the AZ and across AZ and install Kafka on each of the nodes.  To build, deploy and support an enterprise self-managed Kafka environment of this nature your organisations will need a team of approx. 5 engineers with strong infrastructure and networking skills.  
+To build a self-managed Kafka platform, your organisation will need to provision the relevant EC2 instances, configure the network connectivity between the brokers within the AZ and across AZ, and install Kafka on each of the nodes.  To build, deploy and support an enterprise self-managed Kafka environment of this nature your organisations will need a team of approx. 5 engineers with strong infrastructure and networking skills.  
 
-Once the solution is deployed the types of tasks that an organisation’s support team needs to plan for are, but are not limited to; observability across instances, storage, network etc. managing Kafka broker(s), replication of data ensuring data sync., security configuration (vpc, subnets and security groups), manage scaling and synchronisation across the cluster, manage failures and maintaining uptime.
+Once the solution is deployed the types of tasks that an organisation’s support team needs to plan for are, but are not limited to; observability across instances, storage, networking, managing Kafka broker(s), replication of data ensuring data sync, security configuration (vpc, subnets and security groups), manage scaling and synchronisation across the cluster, manage failures, patching software and maintaining uptime.
 
-Open-source Kafka is free to download and run however the cost of managing the Kafka cluster is much higher than MSK due to the complexity of Kafka.
+Open-source Kafka is free to download however the cost of managing the Kafka cluster is much higher than MSK due to the complexity of Kafka.
 
-Below illustrates what a self-managed Kafka architecture would typically reflect.  Information is being generated from a relational database and submitted to a Kafka producer which commits the events to the kafka cluster.  There is a three broker cluster in each AZ which communicates with the other AZ's for data replication;
+Below illustrates what a self-managed Kafka architecture would typically reflect.  Information is being generated from a relational database and submitted to a Kafka producer which commits the events to the Kafka cluster.  There is a three broker cluster in each AZ which communicates with the other AZ's for data replication/durability and high availabilty;
 
 ![Kafkaimage3](./images/Kafkaimage3.png)
 
@@ -48,10 +48,11 @@ Amazon MSK operates, maintains and scales Apache Kafka clusters, provides enterp
 
 You can create your cluster with a few clicks in the AWS management console or using the AWS SDKs.
 
-Because MSK is a managed service, your organisation will need a much smaller team to deploy, manage and support MSK, in most cases this can between 1-2 engineers.  
-A point to consider is that MSK is managed by the AWS MSK services team therefore your MSK cluster will be deployed in the MSK service team VPC.  MSK resources will be available to your own Amazon VPC, subnet, and security group you select when the cluster is setup
+Because MSK is a managed service, your organisation will need a much smaller team to deploy, manage and support MSK, in most cases this can between 1-2 engineers (depending on size).
 
-Compared to self-managed solution, managed MSK solutions are up to 60% lower in cost.  This is due the efficient use of infrastructure through the managed service.  Furthermore, your organisation will benefit significantly from the reduction effort required to deploy and maintain the platform once in production.  
+A point to consider is that MSK is managed by the AWS MSK services team therefore your MSK cluster will be deployed in a MSK service team VPC.  MSK resources will be available to your own Amazon VPC, subnet, and security group you select when the cluster is setup
+
+Compared to self-managed solutions, managed MSK solutions are up to 60% lower in cost.  This is due the efficient use of infrastructure through the managed service.  Furthermore, your organisation will benefit significantly from the reduction in effort required to deploy and maintain the platform once in production.  
 
 This illustration of a MSK managed platform, when compared to the previous solution, demonstrates a much simpler solution with a lot less dependencies to manage.  MSK by default deploys into three AZ's and gurantees 99.99% availability.  
 
