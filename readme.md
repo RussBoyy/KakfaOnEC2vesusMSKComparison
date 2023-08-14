@@ -7,6 +7,16 @@ In this upload we will provide a short overview of the implementation, operation
 
 **What is AWS MSK?**  Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables your organisation to build and run realtime Kafka data pipelines without the need to manage  infrastucture, OS or software patching.  MSK keeps costs low and is offered at as low as 1/13th the cost of other providers.
 
+**When should you NOT use kafka**
+
+Kafka a substitute for Analytic Databases: Kafka's forte isn't complex analytics across large database joins. Systems like SQL, MapReduce and Redshift are other specialized databases and are better geared for such tasks. 
+
+Kafka is unit as a Massive Client Proxy. If your organisation is intending to connect to millions, like in gaming or mobility services, kafka isn't the best pick. Consider MQ DT or REST proxies for large-scale client handling.
+
+Avoid for Hard Real-Time Systems: Systems necessitating strict real-time responses, like self-driving cars, are outside Kafka's domain. However, for low latency enterprise needs, Kafka still stands strong.
+
+**Overview**
+
 With the increase in Kafka adoption, organisations are asking themselves whether they should create and manage their own Kafka cluster using open-source Kafka or should they leverage AWS managed service MSK.  This upload will not be an exhaustive list of advantages versus disadvantages but will focus on highlighting areas that should be considered when deciding which approach should be adopted.  
 
 Those areas are:
@@ -14,6 +24,7 @@ Those areas are:
 *	Team size
 *	Implementation / architecture 
 *	Cost
+
 
 
 The difference between Kafka implemented on-premise v EC2 v MSK can be broken down as follows. The items highlighted in orange are functional deliverables that are provided through the AWS managed service model, and the grey items are deliverables that will be the responsibility of your delivery team.
