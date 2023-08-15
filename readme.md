@@ -9,9 +9,8 @@ In this upload we will provide a short overview of the implementation, operation
 
 **When should you NOT use kafka**
 
-Kafka a substitute for Analytic Databases: Kafka's forte isn't complex analytics across large database joins. Systems like SQL, MapReduce and Redshift are other specialized databases and are better geared for such tasks. 
+Kafka is not a substitute for Analytic Databases: Kafka's forte isn't complex analytics across large database joins. Systems like SQL, MapReduce and Redshift are other specialized databases are better geared for such tasks. 
 
-Kafka is unit as a Massive Client Proxy. If your organisation is intending to connect to millions, like in gaming or mobility services, kafka isn't the best pick. Consider MQ DT or REST proxies for large-scale client handling.
 
 Avoid for Hard Real-Time Systems: Systems necessitating strict real-time responses, like self-driving cars, are outside Kafka's domain. However, for low latency enterprise needs, Kafka still stands strong.
 
