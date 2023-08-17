@@ -11,8 +11,7 @@ In this upload we will provide a short overview of the implementation, operation
 
 Kafka is not a substitute for Analytic Databases: Kafka's forte isn't complex analytics across large database joins. Systems like SQL, MapReduce and Redshift are other specialized databases are better geared for such tasks. 
 
-
-Avoid for Hard Real-Time Systems: Systems necessitating strict real-time responses, like self-driving cars, are outside Kafka's domain. However, for low latency enterprise needs, Kafka still stands strong.
+You should also avoid using Kafka for real-time systems that necessitate strict real-time responses, like self-driving cars. However, for low latency enterprise needs, Kafka still stands strong.
 
 **Overview**
 
@@ -44,13 +43,16 @@ Note: The follow technical guidelines are based on a typical deployment of 500GB
 
 To build a self-managed Kafka platform, your organisation will need to provision the relevant EC2 instances, configure the network connectivity between the brokers within the AZ and across AZ, and install Kafka and Zookeeper on each of the nodes.  To build, deploy and support an enterprise self-managed Kafka environment of this nature your organisations will need a team of approx. 5 engineers with strong infrastructure and networking skills.  
 
-Once the solution is deployed the types of tasks that an organisation’s support team needs to plan for are, but are not limited to; observability across instances, storage, networking, managing Kafka broker(s), replication of data ensuring data sync, security configuration (vpc, subnets and security groups), manage scaling and synchronisation across the cluster, manage failures, patching software and maintaining uptime.
+Once the solution is deployed the types of tasks that an organisation’s support team needs to plan for are, but are not limited to; observability across instances, storage, networking, managing Kafka broker(s), replication of data ensuring data sync, security configuration (vpc, subnets and security groups), Zookeeper, manage scaling and synchronisation across the cluster, manage failures, patching software and maintaining uptime.
 
 Open-source Kafka is free to download however the cost of managing the Kafka cluster is much higher than MSK due to the complexity of Kafka.
 
+For more infromation on how to build a Kafka on EC2 solution please see [here]( https://aws.amazon.com/blogs/big-data/best-practices-for-running-apache-kafka-on-aws/)
+
+
 Below illustrates what a self-managed Kafka architecture would typically reflect.  Information is being generated from a relational database and submitted to a Kafka producer which commits the events to the Kafka cluster.  There is a three broker cluster in each AZ which communicates with the other AZ's for data replication/durability and high availabilty;
 
-![Kafkaimage3](./images/Kafkaimage3.png)
+![KafkaEC2v2](./images/KafkaEC2v2.png)
 
 
 <h2> Running Apache Kafka on AWS Managed Streaming for Kafka (Managed Service) </h2>
@@ -71,7 +73,7 @@ This illustration of a MSK managed platform, when compared to the previous solut
 
 
 
-![Kafkaimage4](./images/Kafkaimage4.png)
+![KafkaMSK.png](./images/KafkaMSK.png)
 
 The conclusion of this is that MSK is a much easier, safer and cost-effective way to deliver Kafka into your organisation.  For more information on AWS MSK see [here](https://aws.amazon.com/msk/).
 
